@@ -1,6 +1,20 @@
+import { useState } from "react";
 import "./products.css";
 
 const Products = () => {
+  const [values, setValues] = useState();
+
+  const handleChangeValues = (value) => {
+    setValues((prevValue) => ({
+      ...prevValue,
+      [value.target.name]: value.target.value,
+    }));
+  };
+
+  const handleClickButton = () => {
+    console.log(values);
+  };
+
   return (
     <>
       <div className="container-products">
@@ -11,24 +25,33 @@ const Products = () => {
             className="register-input"
             type="text"
             name="name"
-            placeholder="nome"
+            placeholder="Nome"
+            onChange={handleChangeValues}
           ></input>
           <input
             className="register-input"
             type="text"
             name="cust"
-            placeholder="preço"
+            placeholder="Preço"
+            onChange={handleChangeValues}
           ></input>
           <input
             className="register-input"
             type="text"
             name="description"
-            placeholder="descrição"
+            placeholder="Descrição"
+            onChange={handleChangeValues}
           ></input>
 
-          <button className="register-button">adicionar</button>
-          <button className="register-button">editar</button>
-          <button className="register-button">deletar</button>
+          <button className="register-button" onClick={handleClickButton}>
+            adicionar
+          </button>
+          <button className="register-button" onClick={handleClickButton}>
+            editar
+          </button>
+          <button className="register-button" onClick={handleClickButton}>
+            deletar
+          </button>
         </div>
       </div>
     </>
