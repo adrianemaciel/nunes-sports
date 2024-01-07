@@ -27,6 +27,18 @@ app.get("/products", (req, res) => {
 app.use(cors());
 app.use(express.json());
 
+app.post("/register", (req, res) => {
+  const { name } = req.body;
+  const { cost } = req.body;
+  const { description } = req.body;
+
+  let SQL = "INSERT INTO products (name, cost, description ) VALUES( ?,?,?)";
+
+  connection.query(SQL, [name, cost, description], (err, req) => {
+    console.log(err);
+  });
+});
+
 app.listen(3001, () => {
   console.log("rodando servidor");
 });
