@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import "./products.css";
 
 const Products = () => {
@@ -12,7 +13,15 @@ const Products = () => {
   };
 
   const handleClickButton = () => {
-    console.log(values);
+    axios
+      .post("http://localhost:3001/register", {
+        name: values.name,
+        cost: values.cost,
+        description: values.description,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (
@@ -31,7 +40,7 @@ const Products = () => {
           <input
             className="register-input"
             type="text"
-            name="cust"
+            name="cost"
             placeholder="Preço"
             onChange={handleChangeValues}
           ></input>
