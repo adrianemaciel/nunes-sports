@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./products.css";
+import Card from "../Cards/card";
 
 const Products = () => {
   const [values, setValues] = useState();
+  const [listProducts, setListProducts] = useState();
 
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
@@ -24,10 +26,16 @@ const Products = () => {
       });
   };
 
+  useEffect(() => {
+    axios.get("http://localhost:3001/getCards").then((response) => {
+      setListProducts(response.data);
+    });
+  }, []);
+
   return (
     <>
       <div className="container-products">
-        <div>
+        <div className="register-container">
           <h2 className="register-title">Nunes Sports</h2>
 
           <input
@@ -62,6 +70,20 @@ const Products = () => {
             deletar
           </button>
         </div>
+        {typeof listProducts !== "undefined" &&
+          listProducts.map((value) => {
+            return (
+              <Card
+                key={value.id}
+                listCard={listProducts}
+                setListCard={setListProducts}
+                id={value.id}
+                name={value.name}
+                cost={value.cost}
+                description={value.description}
+              />
+            );
+          })}
       </div>
     </>
   );
