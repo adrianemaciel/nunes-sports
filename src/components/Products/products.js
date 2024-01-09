@@ -26,10 +26,14 @@ const Products = () => {
       });
   };
 
-  useEffect(() => {
+  const getList = () => {
     axios.get("http://localhost:3001/getCards").then((response) => {
       setListProducts(response.data);
     });
+  };
+
+  useEffect(() => {
+    getList();
   }, []);
 
   return (
@@ -61,26 +65,21 @@ const Products = () => {
           ></input>
 
           <button className="register-button" onClick={handleClickButton}>
-            adicionar
-          </button>
-          <button className="register-button" onClick={handleClickButton}>
-            editar
-          </button>
-          <button className="register-button" onClick={handleClickButton}>
-            deletar
+            Adicionar
           </button>
         </div>
         {typeof listProducts !== "undefined" &&
           listProducts.map((value) => {
             return (
               <Card
-                key={value.id}
-                listCard={listProducts}
-                setListCard={setListProducts}
-                id={value.id}
+                key={value.idproducts}
+                listProducts={listProducts}
+                setListProducts={setListProducts}
+                id={value.idproducts}
                 name={value.name}
                 cost={value.cost}
                 description={value.description}
+                getList={getList}
               />
             );
           })}

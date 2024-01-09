@@ -48,6 +48,24 @@ app.get("/getCards", (req, res) => {
   });
 });
 
+app.put("/edit", (req, res) => {
+  const { idproducts, name, cost, description } = req.body;
+
+  let SQL = `UPDATE nunes_sports.products SET name = "${name}", cost= ${cost}, description = "${description}" WHERE idproducts = ${idproducts}`;
+
+  connection.query(
+    SQL,
+    [name, cost, description, idproducts],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send({status:"ok"});
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("rodando servidor");
 });
