@@ -4,7 +4,7 @@ import "./products.css";
 import Card from "../Cards/card";
 
 const Products = () => {
-  const [values, setValues] = useState();
+  const [values, setValues] = useState({ name: "", cost: "", description: "" });
   const [listProducts, setListProducts] = useState();
 
   const handleChangeValues = (value) => {
@@ -22,7 +22,10 @@ const Products = () => {
         description: values.description,
       })
       .then((response) => {
-        console.log(response);
+        if (response.data.status === "ok") {
+          getList();
+          setValues({ name: "", cost: "", description: "" });
+        }
       });
   };
 
@@ -47,6 +50,7 @@ const Products = () => {
             type="text"
             name="name"
             placeholder="Nome"
+            value={values.name}
             onChange={handleChangeValues}
           ></input>
           <input
@@ -54,6 +58,7 @@ const Products = () => {
             type="text"
             name="cost"
             placeholder="Preço"
+            value={values.cost}
             onChange={handleChangeValues}
           ></input>
           <input
@@ -61,6 +66,7 @@ const Products = () => {
             type="text"
             name="description"
             placeholder="Descrição"
+            value={values.description}
             onChange={handleChangeValues}
           ></input>
 

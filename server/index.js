@@ -35,7 +35,11 @@ app.post("/register", (req, res) => {
   let SQL = "INSERT INTO products (name, cost, description ) VALUES( ?,?,?)";
 
   connection.query(SQL, [name, cost, description], (err, req) => {
-    console.log(err);
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ status: "ok" });
+    }
   });
 });
 
@@ -60,10 +64,24 @@ app.put("/edit", (req, res) => {
       if (err) {
         res.send(err);
       } else {
-        res.send({status:"ok"});
+        res.send({ status: "ok" });
       }
     }
   );
+});
+
+app.delete("/delete/:idproducts", (req, res) => {
+  const { idproducts } = req.params;
+
+  let SQL = `DELETE FROM nunes_sports.products WHERE idproducts = ${idproducts}`;
+
+  connection.query(SQL, [idproducts], (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ status: "ok" });
+    }
+  });
 });
 
 app.listen(3001, () => {

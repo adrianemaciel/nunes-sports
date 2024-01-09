@@ -33,6 +33,16 @@ export default function FormDialog(props) {
     handleClose();
   };
 
+  const handleDeleteProducts = () => {
+    axios
+      .delete(`http://localhost:3001/delete/${editValues.idproducts}`)
+      .then((res) => {
+        if (res.data.status === "ok") {
+          props.getList();
+        }
+      });
+  };
+
   const handleClose = () => {
     props.setOpen(false);
   };
@@ -84,7 +94,7 @@ export default function FormDialog(props) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Excluir</Button>
+        <Button onClick={handleDeleteProducts}>Excluir</Button>
         <Button onClick={handleEditProducts}>Salvar</Button>
       </DialogActions>
     </Dialog>
