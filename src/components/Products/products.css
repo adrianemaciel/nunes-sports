@@ -1,0 +1,25 @@
+.container-products {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-container {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: antiquewhite;
+}
+
+.register-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.register-input {
+  display: block;
+  padding: 5px;
+  margin: 10px auto;
+}

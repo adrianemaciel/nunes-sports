@@ -1,0 +1,25 @@
+.card-container {
+  width: 250px;
+  margin: 10px;
+  padding: 5px 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-container:hover{
+    background-color: azure;
+}
+
+.card-title {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.card-cost,
+.card-description {
+  margin-top: 5px;
+}
+
+.card-button {
+  margin: 10px;
+}

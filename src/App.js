@@ -1,11 +1,12 @@
 import React from "react";
+
+import Products from "./components/Products/products";
+
 function App() {
   return (
-    <div>
-      <h1>
-        Olá Nunes Sports
-      </h1>
-    </div>
+    <>
+      <Products />
+    </>
   );
 }
 
